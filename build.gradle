@@ -1,0 +1,35 @@
+plugins {
+    id 'application'
+}
+
+group 'com.montaury'
+version '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.mockito:mockito-core:4.3.0'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass = 'com.montaury.mus.JeuDeMus'
+}
+
+jar {
+    manifest {
+        attributes("Main-Class": application.mainClass)
+    }
+}
+
+run {
+    standardInput = System.in
+}
