@@ -5,9 +5,11 @@ import com.montaury.mus.jeu.carte.ValeurCarte;
 
 public class PaireSimple extends Paires {
   private final ValeurCarte valeurCarte;
+  public static final int POINTS_BONUS = 1;
+
 
   public PaireSimple(ValeurCarte valeurCarte) {
-    super(1);
+    super(POINTS_BONUS);
     this.valeurCarte = valeurCarte;
   }
 

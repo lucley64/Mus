@@ -5,9 +5,10 @@ import com.montaury.mus.jeu.carte.ValeurCarte;
 public class Meds extends Paires {
 
   private final ValeurCarte valeurCarte;
+  public static final int POINTS_BONUS = 2;
 
   public Meds(ValeurCarte valeurCarte) {
-    super(2);
+    super(POINTS_BONUS);
     this.valeurCarte = valeurCarte;
   }
 
