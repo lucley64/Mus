@@ -16,43 +16,43 @@ import static org.mockito.Mockito.mock;
 
 class MancheTest {
 
-  @BeforeEach
-  void setUp() {
-    manche = new Manche(mock(Evenements.class));
-  }
+    @BeforeEach
+    void setUp() {
+        manche = new Manche(mock(Evenements.class));
+    }
 
-  @Test
-  void devrait_terminer_la_manche_si_hordago_au_grand() {
-    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
-    var joueurZaku = unJoueurFaisantChoix(new Kanta());
+    @Test
+    void devrait_terminer_la_manche_si_hordago_au_grand() {
+        var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
+        var joueurZaku = unJoueurFaisantChoix(new Kanta());
 
-    var resultat = manche.jouer(new Opposants(joueurEsku, joueurZaku));
+        var resultat = manche.jouer(new Opposants(joueurEsku, joueurZaku));
 
-    assertThat(resultat.vainqueur()).isNotNull();
-    assertThat(resultat.pointsVaincu()).isZero();
-  }
+        assertThat(resultat.vainqueur()).isNotNull();
+        assertThat(resultat.pointsVaincu()).isZero();
+    }
 
-  @Test
-  void devrait_terminer_la_manche_si_un_joueur_a_40_points() {
-    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Gehiago(2));
-    var joueurZaku = unJoueurFaisantChoix(new Gehiago(40), new Tira());
+    @Test
+    void devrait_terminer_la_manche_si_un_joueur_a_40_points() {
+        var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Gehiago(2));
+        var joueurZaku = unJoueurFaisantChoix(new Gehiago(40), new Tira());
 
-    var resultat = manche.jouer(new Opposants(joueurEsku, joueurZaku));
+        var resultat = manche.jouer(new Opposants(joueurEsku, joueurZaku));
 
-    assertThat(resultat.vainqueur()).isEqualTo(joueurEsku);
-    assertThat(resultat.pointsVaincu()).isZero();
-  }
+        assertThat(resultat.vainqueur()).isEqualTo(joueurEsku);
+        assertThat(resultat.pointsVaincu()).isZero();
+    }
 
-  @Test
-  void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour() {
-    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
-    var joueurZaku = unJoueurFaisantChoix(new Kanta());
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    @Test
+    void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour() {
+        var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
+        var joueurZaku = unJoueurFaisantChoix(new Kanta());
+        var opposants = new Opposants(joueurEsku, joueurZaku);
 
-    manche.jouer(opposants);
+        manche.jouer(opposants);
 
-    assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku);
-  }
+        assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku);
+    }
 
-  private Manche manche;
+    private Manche manche;
 }

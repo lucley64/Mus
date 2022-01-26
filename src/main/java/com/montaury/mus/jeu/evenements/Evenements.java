@@ -8,17 +8,21 @@ import com.montaury.mus.jeu.tour.phases.Phase;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
 
 public interface Evenements {
-  void nouvellePartie();
-  void nouvelleManche();
-  void mancheTerminee(Partie.Score score);
-  void nouveauTour(Opposants opposants);
-  void tourTermine(Opposants opposants, Manche.Score score);
+    void nouvellePartie();
 
-  void choixFait(Joueur joueur, Choix choix);
+    void nouvelleManche();
 
-  void nouvelleMain(Joueur joueur);
+    void mancheTerminee(Partie.Score score);
 
-  void nouvellePhase(Phase phase);
+    void nouveauTour(Opposants opposants);
 
-  void partieTerminee(Partie.Resultat resultat);
+    void tourTermine(Opposants opposants, Manche.Score score);
+
+    void choixFait(Joueur joueur, Choix choix);
+
+    void nouvelleMain(Joueur joueur);
+
+    void nouvellePhase(Phase phase);
+
+    void partieTerminee(Partie.Resultat resultat);
 }
