@@ -4,7 +4,7 @@ import com.montaury.mus.console.InterfaceJoueurHumain;
 import com.montaury.mus.jeu.carte.Carte;
 import java.util.List;
 
-public class Joueur extends AbstractJoueur{
+public class Joueur{
   public static Joueur humain(String nom) {
     return new Joueur(nom, new InterfaceJoueurHumain());
   }

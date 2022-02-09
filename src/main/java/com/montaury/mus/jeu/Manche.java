@@ -1,6 +1,7 @@
 package com.montaury.mus.jeu;
 
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.Tour;
 import java.util.HashMap;
@@ -28,25 +29,25 @@ public class Manche {
   public static class Score {
     public static final int POINTS_POUR_TERMINER_MANCHE = 40;
 
-    private final Map<Joueur, Integer> scoreParJoueur = new HashMap<>();
+    private final Map<Equipe, Integer> scoreParJoueur = new HashMap<>();
 
     public Score(Opposants opposants) {
-      scoreParJoueur.put(opposants.joueurEsku(), 0);
-      scoreParJoueur.put(opposants.joueurZaku(), 0);
+      scoreParJoueur.put(opposants.equipeEsku(), 0);
+      scoreParJoueur.put(opposants.equipeZaku(), 0);
     }
 
-    public Map<Joueur, Integer> scoreParJoueur() {
+    public Map<Equipe, Integer> scoreParJoueur() {
       return scoreParJoueur;
     }
 
-    public void scorer(Joueur joueur, int points) {
+    public void scorer(Equipe equipe, int points) {
       if (vainqueur().isEmpty()) {
-        scoreParJoueur.put(joueur, Math.min(scoreParJoueur.get(joueur) + points, POINTS_POUR_TERMINER_MANCHE));
+        scoreParJoueur.put(equipe, Math.min(scoreParJoueur.get(equipe) + points, POINTS_POUR_TERMINER_MANCHE));
       }
     }
 
-    public Optional<Joueur> vainqueur() {
-      return scoreParJoueur.keySet().stream().filter(joueur -> scoreParJoueur.get(joueur) == POINTS_POUR_TERMINER_MANCHE).findAny();
+    public Optional<Equipe> vainqueur() {
+      return scoreParJoueur.keySet().stream().filter(equipe -> scoreParJoueur.get(equipe) == POINTS_POUR_TERMINER_MANCHE).findAny();
     }
 
     public Optional<Integer> pointsVaincu() {
@@ -57,15 +58,15 @@ public class Manche {
   }
 
   public static class Resultat {
-    private final Joueur vainqueur;
+    private final Equipe vainqueur;
     private final int pointsVaincu;
 
-    public Resultat(Joueur joueur, int pointsVaincu) {
-      vainqueur = joueur;
+    public Resultat(Equipe equipe, int pointsVaincu) {
+      vainqueur = equipe;
       this.pointsVaincu = pointsVaincu;
     }
 
-    public Joueur vainqueur() {
+    public Equipe vainqueur() {
       return vainqueur;
     }
 
