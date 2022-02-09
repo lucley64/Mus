@@ -7,6 +7,7 @@ import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.KANTA;
@@ -57,7 +58,7 @@ public abstract class Phase {
       .collect(Collectors.toList()));
   }
 
-  protected boolean peutParticiper(Main main) {
+  protected boolean peutParticiper(Set<Main> mains) {
     return true;
   }
 

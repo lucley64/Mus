@@ -1,13 +1,14 @@
 package com.montaury.mus.jeu.tour.phases;
 
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Participants {
-  private final List<Joueur> dansLOrdre;
+  private final List<Equipe> dansLOrdre;
 
-  public Participants(List<Joueur> dansLOrdre) {
+  public Participants(List<Equipe> dansLOrdre) {
     this.dansLOrdre = dansLOrdre;
   }
 
@@ -20,20 +21,20 @@ public class Participants {
   }
 
   public Joueur premier() {
-    return dansLOrdre.get(0);
+    return dansLOrdre.get(0).premier();
   }
 
   public Joueur adversaireDe(Joueur joueurParlant) {
-    return joueurParlant == premier() ? dansLOrdre.get(1) : premier();
+    return joueurParlant == premier() ? dansLOrdre.get(1).premier() : premier();
   }
 
-  public Iterable<Joueur> dansLOrdre() {
+  public Iterable<Equipe> dansLOrdre() {
     return dansLOrdre;
   }
 
   public Participants retirer(Joueur joueur) {
-    var joueurs = new ArrayList<>(dansLOrdre);
-    joueurs.remove(joueur);
-    return new Participants(joueurs);
+    var equipes = new ArrayList<>(dansLOrdre);
+    equipes.remove(joueur);
+    return new Participants(equipes);
   }
 }
