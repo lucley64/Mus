@@ -1,18 +1,17 @@
 package com.montaury.mus.jeu.joueur;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Equipe{
     private final Set<Joueur> membres;
     private final String nom;
     private List<Joueur> dansLOrdre = new ArrayList<>();
+    private Iterator<Joueur> joueurDevantParler;
 
     public Equipe(Set<Joueur> membres, String nom) {
         this.membres = membres;
         dansLOrdre.addAll(this.membres);
+        joueurDevantParler = dansLOrdre.iterator();
         this.nom = nom;
     }
 
@@ -41,4 +40,11 @@ public class Equipe{
         return dansLOrdre.get(0);
     }
 
+    public Iterable<Joueur> dansLOrdre(){
+        return dansLOrdre;
+    }
+
+    public Iterator<Joueur> joueurDevantParler(){
+        return joueurDevantParler;
+    }
 }

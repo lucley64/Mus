@@ -2,6 +2,7 @@ package com.montaury.mus.jeu.tour.phases.dialogue;
 
 import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.Participants;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
@@ -57,28 +58,32 @@ public class Dialogue {
     }
 
     private final Participants participants;
-    private Iterator<Joueur> joueursDevantParler;
+    private Iterator<Iterator<Joueur>> equipesDevantParler;
     private List<TypeChoix> prochainsChoixPossibles = TypeChoix.INITIAUX;
     private Joueur joueurParlant;
 
     public Deroulement(Participants participants) {
       this.participants = participants;
-      this.joueursDevantParler = participants.dansLOrdre().iterator();
+      List<Iterator<Joueur>> equipesDevantParlerIterator = new ArrayList<>();
+      for(Equipe equipe : participants.dansLOrdre()){
+        equipesDevantParlerIterator.add(equipe.joueurDevantParler());
+      }
+      this.equipesDevantParler = equipesDevantParlerIterator.iterator();
     }
 
-    private Deroulement(Participants participants, Iterator<Joueur> joueursDevantParler, List<TypeChoix> prochainsChoixPossibles) {
+    private Deroulement(Participants participants, Iterator<Iterator<Joueur>> equipesDevantParler, List<TypeChoix> prochainsChoixPossibles) {
       this.participants = participants;
-      this.joueursDevantParler = joueursDevantParler;
+      this.equipesDevantParler = equipesDevantParler;
       this.prochainsChoixPossibles = prochainsChoixPossibles;
     }
 
     public Joueur prochainJoueur() {
-      joueurParlant = joueursDevantParler.next();
+      joueurParlant = equipesDevantParler.next().next();
       return joueurParlant;
     }
 
     public boolean estTermine() {
-      return !joueursDevantParler.hasNext();
+      return !equipesDevantParler.hasNext();
     }
 
     public List<TypeChoix> choixPossibles() {
@@ -86,7 +91,7 @@ public class Dialogue {
     }
 
     public Deroulement basculerSurAdversaire(List<TypeChoix> prochainsChoixPossibles) {
-      joueursDevantParler = Collections.singletonList(participants.adversaireDe(joueurParlant)).iterator();
+      equipesDevantParler = Collections.singletonList(participants.adversaireDe(joueurParlant)).iterator();
       this.prochainsChoixPossibles = prochainsChoixPossibles;
       return this;
     }

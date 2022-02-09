@@ -32,9 +32,9 @@ public class Participants {
     return dansLOrdre;
   }
 
-  public Participants retirer(Joueur joueur) {
+  public Participants retirer(Equipe equipe) {
     var equipes = new ArrayList<>(dansLOrdre);
-    equipes.remove(joueur);
+    equipes.remove(equipe);
     return new Participants(equipes);
   }
 }

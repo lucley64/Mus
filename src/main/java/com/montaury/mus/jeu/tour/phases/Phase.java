@@ -2,6 +2,7 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.Opposants;
@@ -64,8 +65,10 @@ public abstract class Phase {
 
   private Joueur meilleurParmi(Participants participants) {
     Joueur meilleur = null;
-    for (Joueur joueur : participants.dansLOrdre()) {
-      meilleur = meilleur == null ? joueur : meilleurEntre(meilleur, joueur);
+    for (Equipe equipe : participants.dansLOrdre()) {
+      for (Joueur joueur : equipe.dansLOrdre()){
+        meilleur = (meilleur == null ? joueur : meilleurEntre(meilleur, joueur));
+      }
     }
     return meilleur;
   }
