@@ -15,23 +15,23 @@ import static org.mockito.Mockito.mock;
 
 class PartieTest {
 
-  @BeforeEach
-  void setUp() {
-    partie = new Partie(mock(Evenements.class));
-  }
+    @BeforeEach
+    void setUp() {
+        partie = new Partie(mock(Evenements.class));
+    }
 
-  @Test
-  void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
-    var opposants = new Opposants(
-      unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
-      unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta())
-    );
+    @Test
+    void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
+        var opposants = new Opposants(
+                unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
+                unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta())
+        );
 
-    Partie.Resultat resultat = partie.jouer(opposants);
+        Partie.Resultat resultat = partie.jouer(opposants);
 
-    assertThat(resultat.vainqueur()).isNotNull();
-    assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
-  }
+        assertThat(resultat.vainqueur()).isNotNull();
+        assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
+    }
 
-  private Partie partie;
+    private Partie partie;
 }

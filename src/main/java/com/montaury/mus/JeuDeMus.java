@@ -5,6 +5,7 @@ import com.montaury.mus.console.AffichageEvenements;
 import com.montaury.mus.jeu.equipe.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.Opposants;
+
 import java.util.Scanner;
 
 public class JeuDeMus {
@@ -13,8 +14,8 @@ public class JeuDeMus {
         var nomJoueur = new Scanner(System.in).next();
         var joueurHumain = Joueur.humain(nomJoueur);
 
-        Equipe equipeHumainOrdinateur = new Equipe(joueurHumain, Joueur.ordinateur());
-        Equipe equipeOrdinateurOrdinateur = new Equipe(Joueur.ordinateur(), Joueur.ordinateur());
+        Equipe equipeHumainOrdinateur = new Equipe(joueurHumain, Joueur.ordinateur(), joueurHumain.nom() + " et " + "Ordinateur");
+        Equipe equipeOrdinateurOrdinateur = new Equipe(Joueur.ordinateur(), Joueur.ordinateur(), "Ordinateur" + " et " + "Ordinateur");
 
         var partie = new Partie(new AffichageEvenements(joueurHumain));
         var resultat = partie.jouer(new Opposants(equipeHumainOrdinateur, equipeOrdinateurOrdinateur));
