@@ -3,7 +3,11 @@ package com.montaury.mus.jeu;
 import com.montaury.mus.jeu.equipe.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.SynchronousQueue;
 
 public class Opposants {
     private Equipe equipeEsku;

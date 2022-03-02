@@ -1,11 +1,8 @@
 package com.montaury.mus.jeu;
 
+import com.montaury.mus.jeu.equipe.Equipe;
 import com.montaury.mus.jeu.evenements.Evenements;
-import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
-import com.montaury.mus.jeu.tour.phases.dialogue.choix.Kanta;
-import com.montaury.mus.jeu.tour.phases.dialogue.choix.Mintza;
-import com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus;
-import com.montaury.mus.jeu.tour.phases.dialogue.choix.Paso;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +29,8 @@ class PartieTest {
 //        assertThat(resultat.vainqueur()).isNotNull();
 //        assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
 //    }
+
+
 
     private Partie partie;
 }

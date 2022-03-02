@@ -61,5 +61,22 @@ class MancheTest {
 //        assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku);
     }
 
+    @Test
+    void devrait_afficher_erreur(){
+        var joueurEsku1 = unJoueurFaisantChoix(new Mintza(), new Paso());
+        var joueurZaku1 = unJoueurFaisantChoix(new Paso());
+        var joueurEsku2 = unJoueurFaisantChoix(new Paso());
+        var joueurZaku2 = unJoueurFaisantChoix(new Imido());
+
+        var oppsants = new Opposants(
+                new Equipe(joueurEsku1, joueurEsku2, "1"),
+                new Equipe(joueurZaku1, joueurZaku2, "2")
+        );
+
+        manche.jouer(oppsants);
+
+        assertThat(oppsants.dansLOrdre()).containsExactly(joueurZaku2);
+    }
+
     private Manche manche;
 }

@@ -11,8 +11,11 @@ public class Joueur {
         return new Joueur(nom, new InterfaceJoueurHumain());
     }
 
+    public static Joueur ordinateurAllie() {
+        return new Joueur("Ordinateur Allie", new InterfaceJoueurOrdinateur());
+    }
     public static Joueur ordinateur() {
-        return new Joueur("Ordinateur", new InterfaceJoueurOrdinateur());
+        return new Joueur("Ordinateur Adversaire", new InterfaceJoueurOrdinateur());
     }
 
     private final String nom;

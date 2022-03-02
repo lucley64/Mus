@@ -9,6 +9,7 @@ import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 
 import java.util.Optional;
+import java.util.Queue;
 import java.util.stream.Collectors;
 
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.KANTA;

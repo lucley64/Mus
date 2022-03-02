@@ -9,6 +9,7 @@ public abstract class Mise extends Choix {
 
     @Override
     public Dialogue.Deroulement influerSur(Dialogue.Deroulement deroulement) {
-        return deroulement.basculerSurAdversaire(prochainsChoixPossibles());
+        return !deroulement.plusQUnParticipant() ? deroulement.basculerSurAdversaire(prochainsChoixPossibles()) : deroulement;
+//        return deroulement.basculerSurAdversaire(prochainsChoixPossibles());
     }
 }

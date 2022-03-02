@@ -9,6 +9,6 @@ public class Paso extends Choix {
 
     @Override
     public Dialogue.Deroulement influerSur(Dialogue.Deroulement deroulement) {
-        return deroulement;
+        return deroulement.retirerJoueurParlant();
     }
 }

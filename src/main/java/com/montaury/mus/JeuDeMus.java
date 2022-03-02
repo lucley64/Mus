@@ -14,7 +14,7 @@ public class JeuDeMus {
         var nomJoueur = new Scanner(System.in).next();
         var joueurHumain = Joueur.humain(nomJoueur);
 
-        Equipe equipeHumainOrdinateur = new Equipe(joueurHumain, Joueur.ordinateur(), joueurHumain.nom() + " et " + "Ordinateur");
+        Equipe equipeHumainOrdinateur = new Equipe(joueurHumain, Joueur.ordinateurAllie(), joueurHumain.nom() + " et " + "Ordinateur");
         Equipe equipeOrdinateurOrdinateur = new Equipe(Joueur.ordinateur(), Joueur.ordinateur(), "Ordinateur" + " et " + "Ordinateur");
 
         var partie = new Partie(new AffichageEvenements(joueurHumain));

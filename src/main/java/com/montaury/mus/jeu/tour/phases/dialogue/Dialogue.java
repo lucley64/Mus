@@ -95,6 +95,10 @@ public class Dialogue {
         public Deroulement retirerJoueurParlant() {
             return new Deroulement(participants.retirer(joueurParlant), joueursDevantParler, prochainsChoixPossibles);
         }
+
+        public boolean plusQUnParticipant(){
+            return participants.estUnique();
+        }
     }
 
     public static class Recapitulatif {
