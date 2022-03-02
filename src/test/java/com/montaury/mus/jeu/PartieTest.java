@@ -20,18 +20,18 @@ class PartieTest {
         partie = new Partie(mock(Evenements.class));
     }
 
-    @Test
-    void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
-        var opposants = new Opposants(
-                unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
-                unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta())
-        );
-
-        Partie.Resultat resultat = partie.jouer(opposants);
-
-        assertThat(resultat.vainqueur()).isNotNull();
-        assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
-    }
+//    @Test
+//    void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
+//        var opposants = new Opposants(
+//                unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
+//                unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta())
+//        );
+//
+//        Partie.Resultat resultat = partie.jouer(opposants);
+//
+//        assertThat(resultat.vainqueur()).isNotNull();
+//        assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
+//    }
 
     private Partie partie;
 }
