@@ -1,5 +1,6 @@
 package com.montaury.mus.jeu;
 
+import com.montaury.mus.jeu.equipe.Equipe;
 import com.montaury.mus.jeu.evenements.Evenements;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Kanta;
@@ -20,18 +21,23 @@ class PartieTest {
         partie = new Partie(mock(Evenements.class));
     }
 
-//    @Test
-//    void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
-//        var opposants = new Opposants(
-//                unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
-//                unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta())
-//        );
-//
-//        Partie.Resultat resultat = partie.jouer(opposants);
-//
-//        assertThat(resultat.vainqueur()).isNotNull();
-//        assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
-//    }
+    @Test
+    void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
+        var joueurEsku1 = unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago());
+        var joueurEsku2 =  unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta());
+        var joueurZaku1 = unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta());
+        var joueurZaku2 = unJoueurFaisantChoix(new Kanta());
+
+        var equipeEsku = new Equipe(joueurEsku1, joueurEsku2, joueurEsku1.nom() + " et " + joueurEsku2.nom());
+        var equipeZaku = new Equipe(joueurZaku1, joueurZaku2, joueurZaku1.nom() + " et " + joueurZaku2.nom());
+        var opposants = new Opposants(equipeEsku,equipeZaku);
+
+
+        Partie.Resultat resultat = partie.jouer(opposants);
+
+        assertThat(resultat.vainqueur()).isNotNull();
+        assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
+    }
 
     private Partie partie;
 }
