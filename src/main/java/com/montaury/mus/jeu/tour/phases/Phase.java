@@ -9,7 +9,6 @@ import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 
 import java.util.Optional;
-import java.util.Queue;
 import java.util.stream.Collectors;
 
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.KANTA;
@@ -35,7 +34,7 @@ public abstract class Phase {
         }
         if (participants.estUnique()) {
             Joueur premier = participants.premier();
-            return Phase.Resultat.termine(premier.equipe, 0, pointsBonus(premier));
+            return Phase.Resultat.termine(premier.getEquipe(), 0, pointsBonus(premier));
         }
         var resultat = new Dialogue(affichage).derouler(participants);
         return conclure(resultat, participants);
@@ -44,25 +43,24 @@ public abstract class Phase {
     private Resultat conclure(Dialogue.Recapitulatif dialogue, Participants participants) {
         if (dialogue.terminePar(TIRA)) {
             var joueurEmportantLaMise = dialogue.dernierJoueurAyantMise();
-            var equipeEmportantLaMise = joueurEmportantLaMise.equipe;
+            var equipeEmportantLaMise = joueurEmportantLaMise.getEquipe();
             return Phase.Resultat.termine(equipeEmportantLaMise, dialogue.pointsEngages(), pointsBonus(joueurEmportantLaMise));
         }
         var vainqueur = meilleurParmi(participants);
         if (dialogue.terminePar(KANTA)) {
-            var equipeVaiqueur = vainqueur.equipe;
+            var equipeVaiqueur = vainqueur.getEquipe();
             return Phase.Resultat.termine(equipeVaiqueur, Manche.Score.POINTS_POUR_TERMINER_MANCHE, 0);
         }
         var bonus = pointsBonus(vainqueur);
-        var equipeVaiqueur = vainqueur.equipe;
+        var equipeVaiqueur = vainqueur.getEquipe();
         return Phase.Resultat.termine(equipeVaiqueur, 0, bonus + (dialogue.terminePar(PASO) && bonus != 0 ? 0 : dialogue.pointsEngages()));
     }
 
     public Participants participantsParmi(Opposants opposants) {
         return new Participants(opposants.dansLOrdre().stream()
                 .filter(joueur -> peutParticiper(joueur.main()))
-                .collect(Collectors.toList()));
+                .toList());
     }
-
     protected boolean peutParticiper(Main main) {
         return true;
     }

@@ -9,9 +9,9 @@ public class Equipe {
 
     public Equipe(Joueur joueur1, Joueur joueur2, String nom) {
         this.joueur1 = joueur1;
-        joueur1.equipe = this;
+        joueur1.setEquipe(this);
         this.joueur2 = joueur2;
-        joueur2.equipe = this;
+        joueur2.setEquipe(this);
         this.nom = nom;
     }
 

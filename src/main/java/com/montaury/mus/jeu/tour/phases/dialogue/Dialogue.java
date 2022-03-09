@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.IDOKI;
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.KANTA;
@@ -107,7 +106,7 @@ public class Dialogue {
         private final Choix dernierChoix;
 
         public Recapitulatif(List<ChoixJoueur> choix) {
-            mises = choix.stream().filter(choixJoueur -> choixJoueur.choix.type().estUneMise()).collect(Collectors.toList());
+            mises = choix.stream().filter(choixJoueur -> choixJoueur.choix.type().estUneMise()).toList();
             dernierChoix = choix.get(choix.size() - 1).choix;
             pointsEngages = calculerPointsEngages();
         }

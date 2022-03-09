@@ -1,6 +1,5 @@
 package com.montaury.mus.jeu.tour.phases.dialogue.choix;
 
-import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
 
 import java.util.List;
 
@@ -55,7 +54,4 @@ public enum TypeChoix {
         return equals(IMIDO) || equals(GEHIAGO) || equals(HORDAGO);
     }
 
-    public Dialogue.Deroulement poursuivreDialogue(Dialogue.Deroulement dialogue) {
-        return null;
-    }
 }
