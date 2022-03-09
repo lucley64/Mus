@@ -20,62 +20,50 @@ class MancheTest {
 
     @Test
     void devrait_terminer_la_manche_si_hordago_au_grand() {
-//        var equipeEsku = new Equipe(unJoueurFaisantChoix(new Mintza(), new Hordago()),
-//                Joueur.ordinateur(),
-//                "hordago + rien");
-//        var equipeZaku = new Equipe(unJoueurFaisantChoix(new Kanta()),
-//                Joueur.ordinateur(),
-//                "accepte + rien");
-//
-//
-//        var resultat = manche.jouer(new Opposants(equipeEsku, equipeZaku));
-//
-//        assertThat(resultat.vainqueur()).isNotNull();
-//        assertThat(resultat.pointsVaincu()).isZero();
+        var equipeEsku = new Equipe(unJoueurFaisantChoix(new Mintza(), new Hordago()),
+                Joueur.ordinateur(),
+                "hordago + rien");
+        var equipeZaku = new Equipe(unJoueurFaisantChoix(new Kanta()),
+                Joueur.ordinateur(),
+                "accepte + rien");
+
+
+        var resultat = manche.jouer(new Opposants(equipeEsku, equipeZaku));
+
+        assertThat(resultat.vainqueur()).isNotNull();
+        assertThat(resultat.pointsVaincu()).isZero();
     }
 
     @Test
-    void devrait_terminer_la_manche_si_un_joueur_a_40_points() {
-//        var joueurEsku1 = unJoueurFaisantChoix(new Mintza(), new Imido(), new Gehiago(2));
-//        var joueurEsku2 = unJoueurFaisantChoix(new Mintza(), new Paso());
-//        var joueurZaku1 = unJoueurFaisantChoix(new Gehiago(40), new Tira());
-//        var joueurZaku2 = unJoueurFaisantChoix(new Paso());
-//
-//        var equipeEsku = new Equipe(joueurEsku1, joueurEsku2, joueurEsku1.nom() + " et " + joueurEsku2.nom());
-//        var equipeZaku = new Equipe(joueurZaku1, joueurZaku2, joueurZaku1.nom() + " et " + joueurZaku2.nom());
-//
-//        var resultat = manche.jouer(new Opposants(equipeEsku, equipeZaku));
-//
-//        assertThat(resultat.vainqueur()).isEqualTo(equipeEsku);
-//        assertThat(resultat.pointsVaincu()).isZero();
+    void devrait_terminer_la_manche_si_une_equipe_a_40_points() {
+        var joueurEsku1 = unJoueurFaisantChoix(new Mintza(), new Imido(), new Gehiago(2));
+        var joueurEsku2 = unJoueurFaisantChoix(new Mintza(), new Paso());
+        var joueurZaku1 = unJoueurFaisantChoix(new Gehiago(40), new Tira());
+        var joueurZaku2 = unJoueurFaisantChoix(new Paso());
+
+        var equipeEsku = new Equipe(joueurEsku1, joueurEsku2, joueurEsku1.nom() + " et " + joueurEsku2.nom());
+        var equipeZaku = new Equipe(joueurZaku1, joueurZaku2, joueurZaku1.nom() + " et " + joueurZaku2.nom());
+
+        var resultat = manche.jouer(new Opposants(equipeEsku, equipeZaku));
+
+        assertThat(resultat.vainqueur()).isEqualTo(equipeEsku);
+        assertThat(resultat.pointsVaincu()).isZero();
     }
 
     @Test
     void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour() {
-//        var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
-//        var joueurZaku = unJoueurFaisantChoix(new Kanta());
-//        var opposants = new Opposants(joueurEsku, joueurZaku);
-//
-//        manche.jouer(opposants);
-//
-//        assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku);
-    }
+        var joueurEsku1 = unJoueurFaisantChoix(new Mintza(), new Hordago());
+        var joueurEsku2 = unJoueurFaisantChoix(new Kanta());
+        var joueurZaku1 = unJoueurFaisantChoix(new Kanta());
+        var joueurZaku2 = unJoueurFaisantChoix(new Kanta());
 
-    @Test
-    void devrait_afficher_erreur(){
-        var joueurEsku1 = unJoueurFaisantChoix(new Mintza(), new Paso());
-        var joueurZaku1 = unJoueurFaisantChoix(new Paso());
-        var joueurEsku2 = unJoueurFaisantChoix(new Paso());
-        var joueurZaku2 = unJoueurFaisantChoix(new Imido());
+        var equipeEsku = new Equipe(joueurEsku1, joueurEsku2, joueurEsku1.nom() + " et " + joueurEsku2.nom());
+        var equipeZaku = new Equipe(joueurZaku1, joueurZaku2, joueurZaku1.nom() + " et " + joueurZaku2.nom());
+        var opposants = new Opposants(equipeEsku, equipeZaku);
 
-        var oppsants = new Opposants(
-                new Equipe(joueurEsku1, joueurEsku2, "1"),
-                new Equipe(joueurZaku1, joueurZaku2, "2")
-        );
+        manche.jouer(opposants);
 
-        manche.jouer(oppsants);
-
-        assertThat(oppsants.dansLOrdre()).containsExactly(joueurZaku2);
+        assertThat(opposants.dansLOrdre()).containsExactly(equipeZaku.joueur1(), equipeEsku.joueur2(), equipeZaku.joueur2(), equipeEsku.joueur1());
     }
 
     private Manche manche;
