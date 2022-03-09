@@ -30,7 +30,7 @@ public class Mus {
 
         while (true) {
             joueursDansLOrdre.forEach(this::completerMain);
-            if (!veulentAllerMus(joueursDansLOrdre.stream().toList())) {
+            if (!veulentAllerMus(joueursDansLOrdre)) {
                 break;
             }
             joueursDansLOrdre.forEach(this::allerMus);
