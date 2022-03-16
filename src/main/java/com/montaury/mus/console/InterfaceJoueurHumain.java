@@ -69,12 +69,12 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
             var indicesCartesAJeter = Arrays.stream(aJeter.split(","))
                     .map(String::trim)
                     .map(Integer::valueOf)
-                    .toList();
+                    .collect(Collectors.toList());
             if (indicesCartesAJeter.stream().allMatch(indice -> indice >= 1 && indice <= 4)) {
                 return indicesCartesAJeter
                         .stream()
                         .map(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit().get(indiceCarte - 1))
-                        .toList();
+                        .collect(Collectors.toList());
             }
         } catch (NumberFormatException e) {
             // la saisie n'est pas un chiffre

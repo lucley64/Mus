@@ -40,7 +40,7 @@ public class Main {
                 .collect(Collectors.groupingBy(Carte::valeurCarte))
                 .entrySet().stream().filter(groupe -> groupe.getValue().size() > 1)
                 .map(groupe -> creerPaires(groupe.getKey(), groupe.getValue().size()))
-                .toList();
+                .collect(Collectors.toList());
         return paires.size() > 1 ? new Doubles((PaireSimple) paires.get(0), (PaireSimple) paires.get(1)) : paires.get(0);
     }
 

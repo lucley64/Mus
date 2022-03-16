@@ -59,7 +59,7 @@ public abstract class Phase {
     public Participants participantsParmi(Opposants opposants) {
         return new Participants(opposants.dansLOrdre().stream()
                 .filter(joueur -> peutParticiper(joueur.main()))
-                .toList());
+                .collect(Collectors.toList()));
     }
     protected boolean peutParticiper(Main main) {
         return true;
